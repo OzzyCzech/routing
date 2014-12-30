@@ -1,0 +1,16 @@
+{
+  "name": "om/phi",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Roman Ožana",
+      "email": "ozana@omdesign.cz"
+    }
+  ],
+  "require": {
+    "om/events" : "*"
+  },
+  "require-dev": {
+    "nette/tester": "*"
+  }
+}
