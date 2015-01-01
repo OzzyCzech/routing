@@ -6,20 +6,13 @@ namespace phi;
  */
 
 /**
- * Basic config file.
+ * Basic config function.
  *
  * @return object
  */
 function config() {
 	static $config;
-
-	if ($config) return $config;
-
-	foreach ($attr = func_get_args() as $i => $item) {
-		if (is_string($item) && is_file($item)) $attr[$i] = include($item);
-	}
-
-	return $config = (object)call_user_func_array('array_replace_recursive', $attr);
+	return $config ? $config : $config = (object)call_user_func_array('array_replace_recursive', func_get_args());
 }
 
 /**
@@ -105,7 +98,7 @@ function redirect($path, $code = 302, $halt = false) {
 }
 
 /**
- * Maps directly to json_encode, but renders JSON headers as well
+ * Maps directly to json_encode, but renders JSON headers as well.
  */
 function json() {
 	$json = call_user_func_array('json_encode', func_get_args());
