@@ -4,12 +4,23 @@
  */
 use Tester\Assert;
 
-require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . '/../../src/phi.php';
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../src/phi.php';
 
 \Tester\Environment::setup();
 { // init config by default value and config file
-	\phi\config(['default' => 'value', 'overwrite' => false], include __DIR__ . '/config.php');
+	\phi\config(
+		[
+			'default' => 'value',
+			'overwrite' => false
+		],
+		[
+			'overwrite' => true,
+			'annonymous' => function () {
+				return "yes it's working";
+			}
+		]
+	);
 	Assert::equal('value', \phi\config()->default);
 	Assert::true(\phi\config()->overwrite);
 }
@@ -25,4 +36,3 @@ require __DIR__ . '/../../src/phi.php';
 	\phi\config()->new_key = 'set value';
 	Assert::equal('set value', \phi\config()->new_key);
 }
-

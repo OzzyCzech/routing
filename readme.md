@@ -1,5 +1,12 @@
+# phi
 
-## Config function
+Simple map-phi-ng functions.
+
+## Table of Contents
+
+- [Config](#config)
+
+## Config
 
 ```php
 function config() {
