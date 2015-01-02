@@ -159,7 +159,7 @@ function dispatch() {
 			$argv = array_merge($argv, ['method' => $method, 'path' => $path]);
 			return call_user_func_array(routes()->all, $argv);
 		} else {
-			$func = 'error';
+			$func = __NAMESPACE__ . '\error';
 			array_unshift($argv, 404);
 		}
 	}

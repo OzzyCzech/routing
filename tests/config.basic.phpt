@@ -7,7 +7,6 @@ use Tester\Assert;
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/phi.php';
 
-\Tester\Environment::setup();
 { // init config by default value and config file
 	\phi\config(
 		[
