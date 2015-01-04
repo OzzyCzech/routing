@@ -31,10 +31,12 @@ class Test {
 	// not 404 called
 	\phi\map(
 		404, function () {
-		Assert::fail('404 function called');
+		Assert::fail('404 handler function called.');
 	}
 	);
 	\phi\map('/some-other-example-url', $test = new Test);
 	\phi\dispatch();
 	Assert::true($test->ok);
 }
+
+http_response_code(200); // fix exit code

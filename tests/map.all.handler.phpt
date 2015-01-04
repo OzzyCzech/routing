@@ -42,3 +42,5 @@ class Test {
 	Assert::false($all->call);
 	Assert::true($notFound->call);
 }
+
+http_response_code(200); // fix exit code
