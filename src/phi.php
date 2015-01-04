@@ -1,19 +1,8 @@
 <?php
-namespace phi;
-
-	/**
-	 * @author Roman Ozana <ozana@omdesign.cz>
-	 */
-
 /**
- * Basic config function.
- *
- * @return object
+ * @author Roman Ozana <ozana@omdesign.cz>
  */
-function config() {
-	static $config;
-	return $config ? $config : $config = (object)call_user_func_array('\array_replace_recursive', func_get_args());
-}
+namespace phi;
 
 /**
  * @return object
@@ -165,4 +154,15 @@ function dispatch() {
 	}
 
 	return call_user_func_array($func, $argv);
+}
+
+
+/**
+ * Basic config function.
+ *
+ * @return object
+ */
+function config() {
+	static $config;
+	return $config ? $config : $config = (object)call_user_func_array('\array_replace_recursive', func_get_args());
 }
