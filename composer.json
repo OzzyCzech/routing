@@ -1,12 +1,27 @@
 {
   "name": "om/phi",
+  "keywords": [
+    "router",
+    "routing",
+    "mapper",
+    "API"
+  ],
   "license": "BSD-3-Clause",
+  "homepage": "http://www.omdesign.cz",
+  "description": "PHP hyper ultra simple and mega fast route => callback mapper",
   "authors": [
     {
       "name": "Roman Ožana",
+      "homepage": "http://www.omdesign.cz/",
       "email": "ozana@omdesign.cz"
     }
   ],
+  "support": {
+    "issues": "https://github.com/OzzyCzech/phi/issues"
+  },
+  "require": {
+    "php": ">=5.5.0"
+  },
   "require-dev": {
     "nette/tester": "*"
   }
