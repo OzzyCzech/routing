@@ -45,10 +45,8 @@ PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback map
 
 ## Dispatch
 
-Entry point to application
-
 ```php
-// if you have a symbols in any route
+// Application entry point 
 \phi\dispatch();
 
 // or with params
