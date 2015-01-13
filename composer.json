@@ -7,9 +7,6 @@
       "email": "ozana@omdesign.cz"
     }
   ],
-  "require": {
-    "om/events" : "*"
-  },
   "require-dev": {
     "nette/tester": "*"
   }

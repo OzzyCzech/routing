@@ -1,22 +1,11 @@
-# phi
+# PHI API
 
-Simple map-phi-ng functions.
+PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback mapper
 
-## Table of Contents
-
-- [Config](#config)
-
-## Config
+# Handle errors
 
 ```php
-function config() {
-	retrun \phi\config([], include __DIR__ . '/config.php') 
-}
-```
-
-Reading and update values
-
-```php
-config()->value = 'save'
-echo config()->value; // will print save 
+# map handler against error codes, first argument is the error code
+\phi\map(404, function ($code) {});
+\phi\map([400, 401, 403, 404], function ($code) {});
 ```
