@@ -4,6 +4,7 @@
     "router",
     "routing",
     "mapper",
+    "REST",
     "API"
   ],
   "license": "BSD-3-Clause",
