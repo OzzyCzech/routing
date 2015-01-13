@@ -22,11 +22,36 @@ PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback map
 ## Error Handlers
 
 ```php
-# map handler against error codes, first argument is the error code
+// map handler against error codes, first argument is the error code
 \phi\map(404, function ($code) {});
 \phi\map([400, 401, 403, 404], function ($code) {});
+\phi\map(500, function ($code) {});
 ```
 
 ## Route Parameters
 
+```php
+// if you have a symbols in any route
+/phi/map('GET', '/users/{id}', function ($params) {
+  $id = $params['id'];
+});
+
+// attach regex rules to your route 
+/phi/map('GET', '/users/{id [0-9]+}', function ($params) {
+  $id = $params['id'];
+});
+
+```
+
 ## Dispatch
+
+Entry point to application
+
+```php
+// if you have a symbols in any route
+\phi\dispatch();
+
+// or with params
+\phi\map('/', function($config) {});
+\phi\dispatch($config = new Config);
+```
