@@ -1,4 +1,4 @@
-# sphido / routing
+# Sphido / Routing
 
 PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback mapper
 
