@@ -1,4 +1,4 @@
-# PHI API
+# sphido / routing
 
 PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback mapper
 
@@ -6,26 +6,26 @@ PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback map
 
 ```php
 // map against all types of requests
-\phi\map('/', function() {});
+map('/', function() {});
 
 // map handler against method(s) + route
-\phi\map('GET', '/', function() {});
-\phi\map(['GET', 'POST'], '/account/new', function() {});
+map('GET', '/', function() {});
+map(['GET', 'POST'], '/account/new', function() {});
 
 // map handler against a route(s)
-\phi\map(['/kontakt', '/contact'], function () {});
+map(['/kontakt', '/contact'], function () {});
 
 // map handler against everything
-\phi\map(function () {});
+map(function () {});
 ```
 
 ## Error Handlers
 
 ```php
 // map handler against error codes, first argument is the error code
-\phi\map(404, function ($code) {});
-\phi\map([400, 401, 403, 404], function ($code) {});
-\phi\map(500, function ($code) {});
+map(404, function ($code) {});
+map([400, 401, 403, 404], function ($code) {});
+map(500, function ($code) {});
 ```
 
 ## Route Parameters
@@ -47,9 +47,9 @@ PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback map
 
 ```php
 // Application entry point 
-\phi\dispatch();
+dispatch();
 
 // or with params
-\phi\map('/', function($config) {});
-\phi\dispatch($config = new Config);
+map('/', function($config) {});
+dispatch($config = new Config);
 ```

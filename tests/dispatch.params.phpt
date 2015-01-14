@@ -5,7 +5,7 @@
 use Tester\Assert;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/phi.php';
+require __DIR__ . '/../src/routing.php';
 
 class Test {
 	/** @var bool */
@@ -24,8 +24,8 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/add_param_to_dispatch';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
-	\phi\map('/add_param_to_dispatch', $test = new Test);
-	\phi\dispatch($param = 'add params to dispatch');
+	map('/add_param_to_dispatch', $test = new Test);
+	dispatch($param = 'add params to dispatch');
 
 	// invoke route
 	Assert::true($test->ok);
@@ -37,8 +37,8 @@ class Test {
 { // check params order
 	$_SERVER['REQUEST_URI'] = '/test_inurl_param/123';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
-	\phi\map('/test_inurl_param/{id}', $test = new Test);
-	\phi\dispatch();
+	map('/test_inurl_param/{id}', $test = new Test);
+	dispatch();
 
 	// invoke route
 	Assert::true($test->ok);
@@ -53,8 +53,8 @@ class Test {
 { // add params to URL and also to dispatch
 	$_SERVER['REQUEST_URI'] = '/test_inurl_param_and_dispatch/123';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
-	\phi\map('/test_inurl_param_and_dispatch/{id}', $test = new Test);
-	\phi\dispatch($param = 'add params to dispatch');
+	map('/test_inurl_param_and_dispatch/{id}', $test = new Test);
+	dispatch($param = 'add params to dispatch');
 	Assert::true($test->ok);
 	Assert::count(2, $test->args);
 

@@ -2,7 +2,6 @@
 /**
  * @author Roman Ozana <ozana@omdesign.cz>
  */
-namespace phi;
 
 /**
  * @return object

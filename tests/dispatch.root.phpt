@@ -5,7 +5,7 @@
 use Tester\Assert;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/phi.php';
+require __DIR__ . '/../src/routing.php';
 
 class Test {
 	/** @var bool */
@@ -24,8 +24,8 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
-	\phi\map('/', $test = new Test);
-	\phi\dispatch();
+	map('/', $test = new Test);
+	dispatch();
 
 	Assert::true($test->ok);
 	Assert::true(empty($test->args));

@@ -5,7 +5,7 @@
 use Tester\Assert;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/phi.php';
+require __DIR__ . '/../src/routing.php';
 
 class Test {
 	public $ok = false;
@@ -20,8 +20,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
 	// 404 called
-	\phi\map(404, $test = new Test);
-	\phi\dispatch();
+	map(404, $test = new Test);
+	dispatch();
 	Assert::true($test->ok);
 }
 
@@ -29,13 +29,13 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/some-other-example-url';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 	// not 404 called
-	\phi\map(
+	map(
 		404, function () {
 		Assert::fail('404 handler function called.');
 	}
 	);
-	\phi\map('/some-other-example-url', $test = new Test);
-	\phi\dispatch();
+	map('/some-other-example-url', $test = new Test);
+	dispatch();
 	Assert::true($test->ok);
 }
 

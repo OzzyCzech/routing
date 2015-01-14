@@ -5,7 +5,7 @@
 use Tester\Assert;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/phi.php';
+require __DIR__ . '/../src/routing.php';
 
 class Test {
 	public $ok = false;
@@ -20,8 +20,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_POST['_method'] = 'GET';
 
-	\phi\map('GET', '/_method_uppercase', $test = new Test);
-	\phi\dispatch();
+	map('GET', '/_method_uppercase', $test = new Test);
+	dispatch();
 	Assert::true($test->ok);
 }
 
@@ -30,8 +30,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_POST['_method'] = 'get';
 
-	\phi\map('GET', '/_method_lovercase', $test = new Test);
-	\phi\dispatch();
+	map('GET', '/_method_lovercase', $test = new Test);
+	dispatch();
 	Assert::true($test->ok);
 }
 
@@ -40,8 +40,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] = 'GET';
 
-	\phi\map('GET', '/http_x_http_method_overrode_uppercase', $test = new Test);
-	\phi\dispatch();
+	map('GET', '/http_x_http_method_overrode_uppercase', $test = new Test);
+	dispatch();
 	Assert::true($test->ok);
 }
 
@@ -50,7 +50,7 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] = 'get';
 
-	\phi\map('GET', '/http_x_http_method_overrode_lovercase', $test = new Test);
-	\phi\dispatch();
+	map('GET', '/http_x_http_method_overrode_lovercase', $test = new Test);
+	dispatch();
 	Assert::true($test->ok);
 }

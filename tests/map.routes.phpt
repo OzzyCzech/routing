@@ -5,63 +5,63 @@
 use Tester\Assert;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/phi.php';
+require __DIR__ . '/../src/routing.php';
 
 { // check exception if map getting zero arguments
-	Assert::exception('\phi\map', '\BadFunctionCallException', 'Invalid number of arguments.', 500);
+	Assert::exception('map', '\BadFunctionCallException', 'Invalid number of arguments.', 500);
 }
 
 { // handle all request method (failover for 404 requests)
-	\phi\map(
+	map(
 		$allFunction = function () {
 		}
 	);
-	Assert::same(\phi\routes()->all, $allFunction);
+	Assert::same(routes()->all, $allFunction);
 }
 
 { // handle any request method
-	\phi\map(
+	map(
 		'/',
 		$anyFunction = function () {
 		}
 	);
-	Assert::same(\phi\routes()->any, [['/', $anyFunction]]);
+	Assert::same(routes()->any, [['/', $anyFunction]]);
 }
 
 { // handle GET request method
-	\phi\map(
+	map(
 		'GET', '/',
 		$getFunction = function () {
 		}
 	);
-	Assert::same(\phi\routes()->GET, [['/', $getFunction]]);
+	Assert::same(routes()->GET, [['/', $getFunction]]);
 }
 
 {// handle POST request method
-	\phi\map(
+	map(
 		'POST', '/',
 		$postFunction = function () {
 		}
 	);
-	Assert::same(\phi\routes()->POST, [['/', $postFunction]]);
+	Assert::same(routes()->POST, [['/', $postFunction]]);
 }
 
 { // handle 404 errors
-	\phi\map(
+	map(
 		404,
 		$errorFunction = function () {
 		}
 	);
 
-	Assert::same(\phi\routes()->error[404], $errorFunction);
+	Assert::same(routes()->error[404], $errorFunction);
 }
 
 { // handle 500 errors
-	\phi\map(
+	map(
 		500,
 		$errorFunction = function () {
 
 		}
 	);
-	Assert::same(\phi\routes()->error[500], $errorFunction);
+	Assert::same(routes()->error[500], $errorFunction);
 }
