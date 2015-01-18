@@ -20,6 +20,11 @@
   "support": {
     "issues": "https://github.com/sphido/routing/issues"
   },
+  "autoload": {
+    "files": [
+      "src/routing.php"
+    ]
+  },
   "require": {
     "php": ">=5.5.6"
   },

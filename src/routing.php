@@ -76,13 +76,11 @@ function error() {
 }
 
 /**
- * Dispatch current request.
+ * Return current request method.
  *
- * @return mixed
+ * @return string
  */
-function dispatch() {
-	$argv = func_get_args();
-	$path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+function method() {
 	$method = strtoupper($_SERVER['REQUEST_METHOD']);
 
 	// override POST method
@@ -93,6 +91,18 @@ function dispatch() {
 			$method = isset($_POST['_method']) ? strtoupper($_POST['_method']) : $method;
 		}
 	}
+	return $method;
+}
+
+/**
+ * Dispatch current request.
+ *
+ * @return mixed
+ */
+function dispatch() {
+	$argv = func_get_args();
+	$path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+	$method = method();
 
 	$rexp = null;
 	$func = null;
@@ -112,7 +122,7 @@ function dispatch() {
 		// {param}        => (?<param>[^/]+)
 		// {param [0-9]+} => (?<param>[0-9]+)
 		$rexp = preg_replace(
-			['#\{([a-zA-Z0-9_]+)\}#', '#\{([^\[]+) *(\[.+)?\}#U'],
+			['#\{([a-zA-Z0-9_.-]+)\}#', '#\{([^\[]+) *(\[.+)?\}#U'],
 			['{$1 [^/]+}', '(?<$1>$2)'],
 			$rexp
 		);

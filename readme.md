@@ -53,3 +53,11 @@ dispatch();
 map('/', function($config) {});
 dispatch($config = new Config);
 ```
+
+## TODO
+
+- optional parametter `[]` or `()`
+- possible change `{param}` to `<param>` same as [Nette Router](http://doc.nette.org/cs/2.2/routing)
+- case sensitivity vs. insensitivity ???
+- `[<lang [a-z]{2}>/]`
+- optional strings `<name>[.html]`
