@@ -54,8 +54,11 @@ map('GET', '/<lang:[a-z]{2}>/page', function ($params) {
 
 ```php
 dispatch(); // process request
+```
 
-// or with params
+or with some params
+
+```php
 map('/', function($config) {});
 dispatch($config = new Config);
 ```
