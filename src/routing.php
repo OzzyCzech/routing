@@ -104,7 +104,7 @@ function dispatch() {
 	$path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 	$method = method();
 
-	$rexp = null;
+	$pattern = null;
 	$func = null;
 	$vals = null;
 
@@ -116,20 +116,24 @@ function dispatch() {
 
 	// iterate over all maps
 	foreach ($maps as $temp) {
-		list($rexp, $call) = $temp;
-		$rexp = trim($rexp, '/');
+		list($pattern, $callback) = $temp;
 
-		// {param}        => (?<param>[^/]+)
-		// {param [0-9]+} => (?<param>[0-9]+)
-		$rexp = preg_replace(
-			['#\{([a-zA-Z0-9_.-]+)\}#', '#\{([^\[]+) *(\[.+)?\}#U'],
-			['{$1 [^/]+}', '(?<$1>$2)'],
-			$rexp
+		$pattern = trim($pattern, '/');
+		$pattern = preg_replace(
+			[
+				'@<([^:]+)>@U', # <param> => <param>[^/]+
+				'@<([^:]+)(:(.+))?>@U', # <param:...> => (?<param>...)
+			],
+			[
+				'<$1:[^/]+>',
+				'(?<$1>$3)',
+			],
+			$pattern
 		);
 
 		// match current path with any maps callback
-		if (preg_match('#^' . $rexp . '$#', $path, $vals)) {
-			$func = $call;
+		if (preg_match('@^' . $pattern . '$@', $path, $vals)) {
+			$func = $callback;
 			break;
 		}
 	}
@@ -154,7 +158,7 @@ function dispatch() {
 		}
 	} else {
 		if (is_callable(routes()->all)) {
-			$argv = array_merge($argv, ['method' => $method, 'path' => $path]);
+			$argv = array_merge(['method' => $method, 'path' => $path], $argv);
 			return call_user_func_array(routes()->all, $argv);
 		} else {
 			$func = __NAMESPACE__ . '\error';

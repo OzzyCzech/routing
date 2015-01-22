@@ -31,17 +31,19 @@ class Test {
 { // optional back slash on the end of url and integer
 	$_SERVER['REQUEST_URI'] = '/some-parametter-in-url-and-123';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
-	map('/some-parametter-in-url-and-/?{id [0-9]+}', $test = new Test);
+	map('/some-parametter-in-url-and-/?<id:[0-9]+>', $test = new Test);
 
 	dispatch();
 	Assert::true($test->ok);
+	Assert::true(array_key_exists('id', reset($test->args)));
 }
 
 { // optional back slash on the end of url and integer
 	$_SERVER['REQUEST_URI'] = '/and-param/value';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
-	map('/and-param/{param}', $test = new Test);
+	map('/and-param/<param>', $test = new Test);
 
 	dispatch();
 	Assert::true($test->ok);
+	Assert::true(array_key_exists('param', reset($test->args)));
 }

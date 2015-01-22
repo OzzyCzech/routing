@@ -1,6 +1,6 @@
 # Sphido / Routing
 
-PHP hyper ultra simple and mega fast (just 4 functions!!!) route => callback mapper
+PHP ultra simple and fast (only 5 functions!!!) `route => callback` mapper
 
 ## Handlers
 
@@ -32,13 +32,18 @@ map(500, function ($code) {});
 
 ```php
 // if you have a symbols in any route
-/phi/map('GET', '/users/{id}', function ($params) {
+map('GET', '/users/<id>', function ($params) {
   $id = $params['id'];
 });
 
 // attach regex rules to your route 
-/phi/map('GET', '/users/{id [0-9]+}', function ($params) {
+map('GET', '/users/<id:[0-9]+>', function ($params) {
   $id = $params['id'];
+});
+
+// language selection in route
+map('GET', '/<lang:[a-z]{2}>/page', function ($params) {
+  $lang = $params['lang'];
 });
 
 ```
@@ -46,18 +51,29 @@ map(500, function ($code) {});
 ## Dispatch
 
 ```php
-// Application entry point 
-dispatch();
+dispatch(); // process request
 
 // or with params
 map('/', function($config) {});
 dispatch($config = new Config);
 ```
+or as your `app` object
 
-## TODO
+```php
+class app {
+  function __invoke($method, $path, $me) {
+    // handle $path/$method as you need
+  }
+  function __destruct() {
+    dispatch($this);
+  }
+}
+map(new app);
+```
 
-- optional parametter `[]` or `()`
-- possible change `{param}` to `<param>` same as [Nette Router](http://doc.nette.org/cs/2.2/routing)
-- case sensitivity vs. insensitivity ???
-- `[<lang [a-z]{2}>/]`
-- optional strings `<name>[.html]`
+## Possible changes
+
+- default values `<param=cz:[a-z]{2}>` ???
+- case sensitivity vs. insensitivity ??? currently is case sensitive
+- optional parametter `(<param>)?` ???
+- optional strings `<name>(.html)?` ????
