@@ -1,6 +1,8 @@
 # Sphido / Routing
 
-PHP ultra simple and fast (only 5 functions!!!) `route => callback` mapper
+[![Build Status](https://travis-ci.org/sphido/routing.svg?branch=master)](https://travis-ci.org/sphido/routing) [![Latest Stable Version](https://poser.pugx.org/sphido/routing/v/stable.svg)](https://packagist.org/packages/sphido/routing) [![Total Downloads](https://poser.pugx.org/sphido/routing/downloads.svg)](https://packagist.org/packages/sphido/routing) [![Latest Unstable Version](https://poser.pugx.org/sphido/routing/v/unstable.svg)](https://packagist.org/packages/sphido/routing) [![License](https://poser.pugx.org/sphido/routing/license.svg)](https://packagist.org/packages/sphido/routing)
+
+Ultra simple and fast (only 5 functions!!!) `route => callback` mapper
 
 ## Handlers
 
