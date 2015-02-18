@@ -1,7 +1,5 @@
 <?php
-/**
- * @author Roman Ozana <ozana@omdesign.cz>
- */
+/** @author Roman Ozana <ozana@omdesign.cz> */
 
 /**
  * @return object
