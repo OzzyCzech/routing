@@ -22,12 +22,12 @@ class app {
 	}
 
 	function __destruct() {
-		dispatch($this);
+		\app\dispatch($this);
 		Assert::true($this->ok); // check if invoke...
 	}
 }
 
-map(new app);
+\route\map(new app);
 
 $_SERVER['REQUEST_URI'] = '/an/example/url';
 $_SERVER['REQUEST_METHOD'] = 'GET';

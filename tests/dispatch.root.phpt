@@ -23,8 +23,8 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
-	map('/', $test = new Test);
-	dispatch();
+	\route\map('/', $test = new Test);
+	\app\dispatch();
 
 	Assert::true($test->ok);
 	Assert::true(empty($test->args));

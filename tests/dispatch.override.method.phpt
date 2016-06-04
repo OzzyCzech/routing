@@ -19,8 +19,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_POST['_method'] = 'GET';
 
-	map('GET', '/_method_uppercase', $test = new Test);
-	dispatch();
+	\route\map('GET', '/_method_uppercase', $test = new Test);
+	\app\dispatch();
 	Assert::true($test->ok);
 }
 
@@ -29,8 +29,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_POST['_method'] = 'get';
 
-	map('GET', '/_method_lovercase', $test = new Test);
-	dispatch();
+	\route\map('GET', '/_method_lovercase', $test = new Test);
+	\app\dispatch();
 	Assert::true($test->ok);
 }
 
@@ -39,8 +39,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] = 'GET';
 
-	map('GET', '/http_x_http_method_overrode_uppercase', $test = new Test);
-	dispatch();
+	\route\map('GET', '/http_x_http_method_overrode_uppercase', $test = new Test);
+	\app\dispatch();
 	Assert::true($test->ok);
 }
 
@@ -49,7 +49,7 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'POST';
 	$_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] = 'get';
 
-	map('GET', '/http_x_http_method_overrode_lovercase', $test = new Test);
-	dispatch();
+	\route\map('GET', '/http_x_http_method_overrode_lovercase', $test = new Test);
+	\app\dispatch();
 	Assert::true($test->ok);
 }

@@ -23,8 +23,8 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/add_param_to_dispatch';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
-	map('/add_param_to_dispatch', $test = new Test);
-	dispatch($param = 'add params to dispatch');
+	\route\map('/add_param_to_dispatch', $test = new Test);
+	\app\dispatch($param = 'add params to dispatch');
 
 	// invoke route
 	Assert::true($test->ok);
@@ -36,8 +36,8 @@ class Test {
 { // check params order
 	$_SERVER['REQUEST_URI'] = '/test_inurl_param/123';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
-	map('/test_inurl_param/<id>', $test = new Test);
-	dispatch();
+	\route\map('/test_inurl_param/<id>', $test = new Test);
+	\app\dispatch();
 
 	// invoke route
 	Assert::true($test->ok);
@@ -52,8 +52,8 @@ class Test {
 { // add params to URL and also to dispatch
 	$_SERVER['REQUEST_URI'] = '/test_inurl_param_and_dispatch/123';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
-	map('/test_inurl_param_and_dispatch/<id>', $test = new Test);
-	dispatch($param = 'add params to dispatch');
+	\route\map('/test_inurl_param_and_dispatch/<id>', $test = new Test);
+	\app\dispatch($param = 'add params to dispatch');
 	Assert::true($test->ok);
 	Assert::count(2, $test->args);
 

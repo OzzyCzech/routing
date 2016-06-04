@@ -19,8 +19,8 @@ class Test {
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
 	// 404 called
-	map(404, $test = new Test);
-	dispatch();
+	\route\map(404, $test = new Test);
+	\app\dispatch();
 	Assert::true($test->ok);
 }
 
@@ -28,13 +28,13 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/some-other-example-url';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 	// not 404 called
-	map(
+	\route\map(
 		404, function () {
 		Assert::fail('404 handler function called.');
 	}
 	);
-	map('/some-other-example-url', $test = new Test);
-	dispatch();
+	\route\map('/some-other-example-url', $test = new Test);
+	\app\dispatch();
 	Assert::true($test->ok);
 }
 

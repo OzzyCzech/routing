@@ -7,6 +7,8 @@ Ultra simple and fast (only 5 functions!!!) `route => callback` mapper
 ## Handlers
 
 ```php
+use function /route/map as map;
+ 
 // map against all types of requests
 map('/', function() {});
 
@@ -24,6 +26,8 @@ map(function () {});
 ## Error Handlers
 
 ```php
+use function /route/map as map;
+
 // map handler against error codes, first argument is the error code
 map(404, function ($code) {});
 map([400, 401, 403, 404], function ($code) {});
@@ -33,6 +37,8 @@ map(500, function ($code) {});
 ## Route Parameters
 
 ```php
+use function /route/map as map;
+
 // if you have a symbols in any route
 map('GET', '/users/<id>', function ($params) {
   $id = $params['id'];
@@ -53,14 +59,14 @@ map('GET', '/<lang:[a-z]{2}>/page', function ($params) {
 ## Dispatch
 
 ```php
-dispatch(); // process request
+/app/dispatch(); // process request and dispatch results
 ```
 
 or with some params
 
 ```php
-map('/', function($config) {});
-dispatch($config = new Config);
+/route/map('/', function($config) {});
+/app/dispatch($config = new Config);
 ```
 or as your `app` object
 
@@ -70,11 +76,12 @@ class app {
     // handle $path/$method as you need
   }
   function __destruct() {
-    dispatch($this);
+    /app/dispatch($this);
   }
 }
-map(new app);
+/route/map(new app);
 ```
+
 
 ## Possible changes
 

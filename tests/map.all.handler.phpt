@@ -23,9 +23,9 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/call-all-handler';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
-	map($all = new Test);
-	map(404, $notFound = new Test); // setup 404 handler
-	dispatch();
+	\route\map($all = new Test);
+	\route\map(404, $notFound = new Test); // setup 404 handler
+	\app\dispatch();
 	Assert::true($all->call);
 	Assert::false($notFound->call);
 }
@@ -34,10 +34,10 @@ class Test {
 	$_SERVER['REQUEST_URI'] = '/call-something-else';
 	$_SERVER['REQUEST_METHOD'] = 'GET';
 
-	map($all = new Test);
-	routes()->all = null; // disable current all handler
-	map(404, $notFound = new Test); // setup 404 handler
-	dispatch();
+	\route\map($all = new Test);
+	\app\routes()->all = null; // disable current all handler
+	\route\map(404, $notFound = new Test); // setup 404 handler
+	\app\dispatch();
 	Assert::false($all->call);
 	Assert::true($notFound->call);
 }
