@@ -1,5 +1,5 @@
 <?php
-/** @author Roman Ozana <ozana@omdesign.cz> */
+/** @author Roman Ozana <roman@ozana.cz> */
 
 
 namespace route {
